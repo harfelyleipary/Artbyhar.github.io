@@ -19,10 +19,20 @@
     <link rel="stylesheet" href="assets/css/plugins/feature.css">
     <!-- Style css -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        window.onload = function () {
+            var audio = new Audio('musik.mp3');
+            audio.loop = true;
+            audio.play();
+        };
+    </script>
 </head>
 
 <body class="template-color-1 spybody" data-spy="scroll" data-target=".navbar-example2" data-offset="70">
-    <audio src="musik.mp3" autoplay loop></audio>
+
+
+
     <!-- Start Header -->
     <header class="rn-header haeder-default black-logo-version header--fixed header--sticky">
         <div class="header-wrapper rn-popup-mobile-menu m--0 row align-items-center">
@@ -168,7 +178,15 @@
                                             Web Developer and now on going data science student. you can see my all
                                             project's in ......, and .......
                                             I hope, we all can colaborated.
+                                            <!-- <a href=""><audio src="musik.mp3" autoplay loop controls></audio></a> -->
                                         </p>
+
+                                        <!-- <script>
+                                            function play() {//Link Audio Bisa Diganti
+                                                var audio = new Audio('musik.mp3'); audio.play(); audio.loop = true; audio.addEventListener('ended', function () { this.currentTime = 0; this.play(); }, false);
+                                            }
+                                        </script> -->
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -218,7 +236,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Audio Area -->
+
+        <!-- end audio area -->
+
         <!-- End Slider Area -->
+
+
+
+
 
         <!-- Start Service Area -->
         <div class="rn-service-area rn-section-gap section-separator" id="features">
