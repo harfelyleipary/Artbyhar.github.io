@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="fsm.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot Ollama</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #eef2f3, #8e9eab);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #ffffffee;
+            backdrop-filter: blur(6px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: #2d3e50;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5c9ded;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #f0f6ff;
+        }
+
+        .nav-links a:hover {
+            background-color: #d3e8ff;
+            color: #2b6cb0;
+            transform: scale(1.05);
+        }
+
+        .chat-container {
+            margin: 40px auto;
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        input[type="text"]:focus {
+            border-color: #5c9ded;
+            box-shadow: 0 0 6px rgba(92, 157, 237, 0.4);
+        }
+
+        button {
+            background-color: #5c9ded;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #407ec9;
+            transform: translateY(-1px);
+        }
+
+        #answer {
+            background-color: #f9fafb;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
+            min-height: 60px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            border-left: 5px solid #5c9ded33;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links a {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .input-section {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .loading {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🎓 FSM UKSW | Chatbot</h1>
+        <div class="nav-links">
+            <a href="texttospeech.html"><span>🎤</span>Text to Speech</a>
+            <a href="./templates/video.html"><span>🖼️</span>Gambar Berbicara</a>
+        </div>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chat-container">
+        <h2>🤖 Chatbot Data Science UKSW</h2>
+        <div class="input-section">
+            <input type="text" id="question" placeholder="Tulis pertanyaan di sini..." />
+            <button onclick="ask()">Tanya</button>
+        </div>
+        <div id="answer">Jawaban akan muncul di sini...</div>
+    </div>
+
+    <!-- Tombol Kembali -->
+    <div style="text-align: center; margin-bottom: 30px;">
+        <button onclick="goBack()" style="
+            background-color: #ae2525;
+            color: white;
+            padding: 10px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        ">🔙 Kembali</button>
+    </div>
+
+    <script>
+        async function ask() {
+            const questionInput = document.getElementById("question");
+            const answerEl = document.getElementById("answer");
+            const question = questionInput.value.trim();
+
+            if (!question) {
+                answerEl.innerText = "❗ Silakan masukkan pertanyaan.";
+                return;
+            }
+
+            answerEl.innerText = "⏳ Sedang mencari jawaban...";
+            answerEl.classList.add("loading");
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                const data = await response.json();
+                answerEl.innerText = data.answer || "❌ Tidak ada jawaban.";
+            } catch (error) {
+                answerEl.innerText = "⚠️ Terjadi kesalahan saat menghubungi server.";
+            }
+
+            answerEl.classList.remove("loading");
+            questionInput.value = "";
+        }
+
+        function goBack() {
+            history.back();
+        }
+    </script>
+</body>
+
+</html>
