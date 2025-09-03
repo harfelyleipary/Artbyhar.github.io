@@ -1,4 +1,4 @@
 -----------------------------
 <h1>This is for learning</h1>
 
-HTML, CSS, Java Scripts
+Hypertext Markup Language (HTML), Cascading Style Sheets (CSS), JavaScript.
