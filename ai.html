@@ -3,78 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIoT Dashboard - GrowWeaNet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard dengan Peta NDVI</title>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Montserrat:wght@700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
+            margin: 0;
             height: 100vh;
             display: flex;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        body.light-mode {
-            background: #ecf0f1;
-            color: #2c3e50;
-        }
-
-        body.dark-mode {
-            background: #1e1e1e;
-            color: #ecf0f1;
+            font-family: 'Poppins', sans-serif;
         }
 
         /* Sidebar */
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: -220px;
+            /* tersembunyi awal */
             width: 220px;
+            height: 100%;
             background: #2c3e50;
-            color: #fff;
+            color: white;
             display: flex;
             flex-direction: column;
             padding: 20px 10px;
-            transition: left 0.3s, width 0.3s;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
+            transition: left 0.3s ease;
             z-index: 1000;
         }
 
-        .sidebar.hidden {
-            left: -220px;
-        }
-
-        body.dark-mode .sidebar {
-            background: #111;
+        .sidebar.active {
+            left: 0;
         }
 
         .sidebar h2 {
-            margin-bottom: 20px;
-            font-size: 1.2em;
             text-align: center;
-            white-space: nowrap;
+            margin-bottom: 20px;
         }
 
         .menu-item {
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 8px 0;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #fff;
-            text-decoration: none;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 6px;
+            gap: 8px;
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -83,86 +60,51 @@
             background: #34495e;
         }
 
-        .theme-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 15px auto;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 22px;
-            border-radius: 8px;
-            background: #34495e;
-            width: 50px;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #3d566e;
-        }
-
-        /* Main Content */
-        .main {
-            flex: 1;
-            padding: 20px;
-            margin-left: 220px;
-            overflow-y: auto;
-            transition: margin-left 0.3s;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .main.full {
-            margin-left: 0;
-        }
-
         /* Header */
-        .header-title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .header {
             text-align: center;
-            margin-bottom: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            position: relative;
         }
 
-        .header-title img {
-            height: 60px;
-            width: 60px;
-            margin-bottom: 10px;
-        }
-
-        .header-title span {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
+        /* Tombol toggle ☰ */
+        .toggle-btn {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
             color: #2c3e50;
         }
 
-        body.dark-mode .header-title span {
-            color: #fff;
+        /* Konten utama */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+            transition: margin-left 0.3s;
+            width: 100%;
         }
 
-        .header-subtitle {
-            font-size: 1rem;
-            margin-top: 5px;
+        .map-container {
+            flex: 1;
+            position: relative;
         }
 
-        .header-location {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #666;
+        #map {
+            height: 100%;
+            width: 100%;
         }
 
-        body.dark-mode .header-location {
-            color: #ccc;
-        }
-
-        /* Cards */
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            padding: 20px;
         }
 
         .card {
@@ -172,210 +114,127 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        body.dark-mode .card {
-            background: #2c2c2c;
-            color: #fff;
-        }
-
-        .card h3 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
         .chart-placeholder {
-            height: 180px;
-            border-radius: 8px;
+            height: 200px;
             background: #bdc3c7;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        body.dark-mode .chart-placeholder {
-            background: #444;
-            color: #ddd;
-        }
-
-        /* About */
-        .about-container {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        body.dark-mode .about-container {
-            background: #2c2c2c;
-        }
-
-        /* Map */
-        #map {
-            height: 400px;
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Toggle Btn for Mobile */
-        .toggle-btn {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: #2c3e50;
-            color: #fff;
-            font-size: 22px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            z-index: 1100;
-            display: none;
-        }
-
-        body.dark-mode .toggle-btn {
-            background: #111;
-        }
-
         /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                left: -220px;
+        @media (min-width: 768px) {
+            .main {
+                margin-left: 220px;
             }
 
-            .main {
-                margin-left: 0;
-                padding: 15px;
+            .sidebar {
+                left: 0;
             }
 
             .toggle-btn {
-                display: block;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            #map {
-                height: 250px;
+                display: none;
             }
         }
     </style>
 </head>
 
-<body class="light-mode">
-    <div class="toggle-btn" id="toggleBtn">☰</div>
-
+<body>
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <h2>AIoT Dashboard</h2>
-        <div class="theme-toggle" id="themeToggle">🌞</div>
-        <div class="menu-item" id="overviewMenu">📊 <span>Overview</span></div>
-        <div class="menu-item" id="aboutMenu">ℹ <span>About Us</span></div>
-        <div class="menu-item">🌡 <span>Sensors</span></div>
-        <div class="menu-item">📈 <span>Analytics</span></div>
+        <h2>Menu</h2>
+        <div class="menu-item" id="overviewMenu">📊 <span class="menu-text">Overview</span></div>
+        <div class="menu-item" id="aboutMenu">ℹ <span class="menu-text">About Us</span></div>
     </div>
 
-    <div class="main" id="mainContent">
-        <div class="header-title">
-            <img src="uksw.png" alt="Logo">
-            <span>GrowWeaNet</span>
-            <div class="header-subtitle">Inovasi Teknologi AIOT untuk Pertanian Presisi Gandum</div>
-            <div class="header-location">Science TechnoPark UKSW - Salatiga, Central Java</div>
+    <!-- Konten utama -->
+    <div class="main">
+        <div class="header">
+            <button class="toggle-btn" id="toggleBtn">☰</button>
+            <h1>GrowWeaNet</h1>
+            <p>Inovasi Teknologi AIOT untuk Pertanian Presisi Gandum</p>
+            <p><i>St. Diponegoro No. 52 - 60, Salatiga, Central Java</i></p>
         </div>
 
-        <!-- Overview -->
+        <div class="map-container" id="mapContainer">
+            <div id="map"></div>
+        </div>
+
         <div class="cards" id="cardsSection">
             <div class="card">
-                <h3>🌡️ Temperature</h3>
+                <h3>Temperature</h3>
                 <div class="chart-placeholder">Chart Placeholder</div>
             </div>
             <div class="card">
-                <h3>💧 Humidity</h3>
-                <div class="chart-placeholder">Chart Placeholder</div>
-            </div>
-            <div class="card">
-                <h3>🌱 Soil Moisture</h3>
-                <div class="chart-placeholder">Chart Placeholder</div>
-            </div>
-            <div class="card">
-                <h3>🌞 Light</h3>
+                <h3>Humidity</h3>
                 <div class="chart-placeholder">Chart Placeholder</div>
             </div>
         </div>
 
-        <div id="map"></div>
-
-        <!-- About -->
-        <div class="about-container" id="aboutSection" style="display:none;">
+        <div class="about-container" id="aboutSection" style="display:none; padding:20px;">
             <h2>About Us</h2>
-            <p><b>GroWheaNet</b> adalah platform hardware & software IoT buatan tim UKSW untuk pemantauan real-time
-                pertumbuhan gandum dan pengelolaan fertigasi presisi.</p>
-            <ul>
-                <li>Victoria Agatha - FSM</li>
-                <li>Harfely Leipary - FSM</li>
-                <li>Brian - FPB</li>
-            </ul>
-            <p>Fitur utama:</p>
-            <ul>
-                <li>Konduktivitas tanah (EC)</li>
-                <li>NPK (Nitrogen, Fosfor, Kalium)</li>
-                <li>Suhu & Kelembapan tanah</li>
-                <li>pH tanah</li>
-                <li>Intensitas cahaya</li>
-            </ul>
+            <p><b>GroWheaNet</b> adalah platform hardware & software IoT … (text lengkap di sini)</p>
         </div>
-
-        <footer style="text-align:center; font-size:0.8rem; color:#888; margin-top:20px;">
-            &copy; 2025 GrowWeaNet - Universitas Kristen Satya Wacana
-        </footer>
     </div>
 
     <!-- Leaflet JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const body = document.body;
-        const sidebar = document.getElementById("sidebar");
-        const toggleBtn = document.getElementById("toggleBtn");
-        const overviewMenu = document.getElementById("overviewMenu");
-        const aboutMenu = document.getElementById("aboutMenu");
-        const cardsSection = document.getElementById("cardsSection");
-        const aboutSection = document.getElementById("aboutSection");
-        const themeToggle = document.getElementById("themeToggle");
-        const mainContent = document.getElementById("mainContent");
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const overviewMenu = document.getElementById('overviewMenu');
+        const aboutMenu = document.getElementById('aboutMenu');
+        const cardsSection = document.getElementById('cardsSection');
+        const aboutSection = document.getElementById('aboutSection');
+        const mapContainer = document.getElementById('mapContainer');
 
-        // Sidebar toggle mobile
-        toggleBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("hidden");
+        // Toggle sidebar
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
         });
 
-        // Menu navigation
-        overviewMenu.addEventListener("click", () => {
-            cardsSection.style.display = "grid";
-            document.getElementById("map").style.display = "block";
-            aboutSection.style.display = "none";
-            sidebar.classList.add("hidden");
+        // Menu navigasi
+        overviewMenu.addEventListener('click', () => {
+            cardsSection.style.display = 'grid';
+            aboutSection.style.display = 'none';
+            mapContainer.style.display = 'block';
+            sidebar.classList.remove('active'); // tutup sidebar setelah klik
+        });
+        aboutMenu.addEventListener('click', () => {
+            cardsSection.style.display = 'none';
+            aboutSection.style.display = 'block';
+            mapContainer.style.display = 'none';
+            sidebar.classList.remove('active');
         });
 
-        aboutMenu.addEventListener("click", () => {
-            cardsSection.style.display = "none";
-            document.getElementById("map").style.display = "none";
-            aboutSection.style.display = "block";
-            sidebar.classList.add("hidden");
-        });
+        // Inisialisasi peta Leaflet
+        const map = L.map('map').setView([-7.320, 110.500], 15); // UKSW
 
-        // Theme toggle
-        themeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            body.classList.toggle("light-mode");
-            themeToggle.textContent = body.classList.contains("dark-mode") ? "🌙" : "🌞";
-        });
-
-        // Map
-        const map = L.map("map").setView([-7.3316, 110.5084], 16);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: "&copy; OpenStreetMap contributors"
+        // Basemap OSM
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        L.marker([-7.3316, 110.5084]).addTo(map).bindPopup("Science TechnoPark UKSW<br>NDVI Live Point").openPopup();
+        // Marker UKSW
+        L.marker([-7.320, 110.500]).addTo(map).bindPopup("Science TechnoPark UKSW");
+
+        // NDVI layer (contoh, nanti bisa diganti ke sumber satelit real)
+        const ndviUrl = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/NDVI_VIIRS_SNPP_NRT/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png";
+        const ndviLayer = L.tileLayer(ndviUrl, {
+            opacity: 0.6,
+            attribution: "NASA GIBS - NDVI"
+        });
+        ndviLayer.addTo(map);
+
+        // Control layer
+        const baseMaps = {
+            "Street": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        };
+        const overlayMaps = {
+            "NDVI": ndviLayer
+        };
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
     </script>
 </body>
 
