@@ -11,14 +11,7 @@
         rel="stylesheet">
 
     <style>
-        /* Map container height */
-        @media screen {
-            #mapContainer {
-                height: 400px;
-            }
-
-        }
-
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
@@ -258,6 +251,117 @@
             width: 100%;
             border-radius: 10px;
         }
+
+        /* ===================== Responsive Design ===================== */
+        @media (min-width: 1025px) {
+            .main {
+                padding: 30px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            #map {
+                height: 450px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .sidebar {
+                width: 180px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            #map {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .sidebar h2,
+            .sidebar.minimized h2 {
+                display: none;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                font-size: 14px;
+                gap: 5px;
+            }
+
+            .main {
+                padding: 10px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            #map {
+                height: 250px;
+            }
+        }
+
+        /* ===================== Tab Setting ===================== */
+        .tab-container {
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background: #34495e;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .tab-buttons button:hover {
+            background: #3d566e;
+        }
+
+        .tab-buttons button.active {
+            background: #2ecc71;
+        }
+
+        .tab-content {
+            display: none;
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .tab-content {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -306,23 +410,20 @@
             </div>
         </div>
 
-        <!-- Map Section (Overview tambahan) -->
-        <div id="map">
-        </div>
+        <!-- Map Section -->
+        <div id="map"></div>
 
-        <!-- About Us Section (hidden by default) -->
+        <!-- About Us Section -->
         <div class="about-container" id="aboutSection" style="display: none;">
             <h2>About Us</h2>
             <p><b>GroWheaNet</b> adalah platform hardware & software IoT buatan tim UKSW untuk pemantauan real-time
                 pertumbuhan gandum dan pengelolaan fertigasi presisi.</p>
-            <p>
-                Nama-nama Anggota Kelompok :
+            <p>Nama-nama Anggota Kelompok :</p>
             <ul>
                 <li>Victoria Agatha - FSM</li>
                 <li>Harfely Leipary - FSM</li>
                 <li>Brian - FPB</li>
             </ul>
-            </p>
             <p>Fitur utama yang ditampilkan pada dashboard Grafana:</p>
             <ul>
                 <li>Konduktivitas tanah (EC) untuk memantau salinitas dan keseimbangan hara.</li>
@@ -332,8 +433,10 @@
                 <li>Intensitas cahaya untuk memantau kebutuhan fotosintesis.</li>
             </ul>
             <p>Data lengkap ini divisualisasikan secara live & historis melalui Grafana, mendukung pengambilan keputusan
-                cepat dan akurat dalam setiap tahap budidaya gandum.</p>
+                cepat
+                dan akurat dalam setiap tahap budidaya gandum.</p>
         </div>
+
         <footer>
             <p style="text-align: center; padding: 10px; font-size: 0.9em; color: #888;">
                 &copy; 2025 GrowWeaNet. Universitas Kristen Satya Wacana.
@@ -341,13 +444,7 @@
         </footer>
     </div>
 
-    <!-- Sensors -->
-    <div>
-
-    </div>
-
-
-    <!-- Leaflet JS untuk Map -->
+    <!-- Leaflet JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -361,6 +458,7 @@
         const aboutSection = document.getElementById('aboutSection');
         const themeToggle = document.getElementById('themeToggle');
         const mapContainer = document.getElementById('map');
+        const settingsTab = document.getElementById('settingsTab');
 
         // Toggle Sidebar
         toggleBtn.addEventListener('click', () => {
@@ -371,6 +469,7 @@
         aboutMenu.addEventListener('click', () => {
             cardsSection.style.display = 'none';
             mapContainer.style.display = 'none';
+            settingsTab.style.display = 'none';
             aboutSection.style.display = 'block';
         });
 
@@ -378,6 +477,7 @@
         overviewMenu.addEventListener('click', () => {
             cardsSection.style.display = 'grid';
             mapContainer.style.display = 'block';
+            settingsTab.style.display = 'block';
             aboutSection.style.display = 'none';
         });
 
@@ -389,8 +489,7 @@
         });
 
         // Inisialisasi Map (Science Techno Park UKSW)
-        const map = L.map('map').setView([-7.3316, 110.5084], 16); // koordinat perkiraan UKSW
-
+        const map = L.map('map').setView([-7.3316, 110.5084], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
@@ -398,8 +497,21 @@
         L.marker([-7.3316, 110.5084]).addTo(map)
             .bindPopup("Science TechnoPark UKSW<br>NDVI Live Point")
             .openPopup();
-    </script>
 
+        // Tab Settings
+        const tabButtons = document.querySelectorAll('.tab-buttons button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
