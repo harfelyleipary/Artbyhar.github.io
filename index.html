@@ -1,898 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ArtbyhR</title>
-    <meta name="robots" content="noindex, follow">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/a1.png">
-    <!-- CSS 
-    ============================================ -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/aos.css">
-    <link rel="stylesheet" href="assets/css/plugins/feature.css">
-    <!-- Style css -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://unpkg.com/feather-icons"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💙 3 Bulan Bersamamu, Sayang 💙</title>
     <style>
-        .github {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0, 90, 200, 0.5), rgba(0, 60, 160, 0.5)),
+                url('D:/Artbyhar.github.io/nyongil.jpg') no-repeat center center/cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Efek partikel biru lembut */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(173, 216, 255, 0.8);
+            border-radius: 50%;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 45px 40px;
+            max-width: 560px;
             text-align: center;
-            background: #1e2024, #23272b;
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: cardFadeIn 2s ease-out;
         }
 
-        iframe {
+        @keyframes cardFadeIn {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: glowText 3s infinite alternate;
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 5px #99ccff, 0 0 10px #99ccff, 0 0 20px #0099ff;
+            }
+
+            to {
+                text-shadow: 0 0 15px #66b3ff, 0 0 25px #66b3ff, 0 0 35px #0099ff;
+            }
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+            animation: fadeInText 2s ease-in;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            background: linear-gradient(90deg, #0099ff, #33ccff);
             border: none;
-            width: 100%;
-            height: 200px;
+            padding: 14px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.4s;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+            animation: glowBtn 2s infinite alternate;
         }
 
-        h5 {
-            color: #ff014f;
+        @keyframes glowBtn {
+            from {
+                box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+            }
+
+            to {
+                box-shadow: 0 0 30px rgba(0, 153, 255, 0.8);
+            }
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #00bfff, #66d9ff);
+        }
+
+        .heart {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            clip-path: path('M10 30 L0 15 A10 10 0 0 1 10 0 A10 10 0 0 1 20 15 Z');
+            animation: float 6s infinite ease-in;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
         }
     </style>
-
 </head>
 
-<body class="template-color-1 spybody" data-spy="scroll" data-target=".navbar-example2" data-offset="70">
-
-
-
-    <!-- Start Header -->
-    <header class="rn-header haeder-default black-logo-version header--fixed header--sticky">
-        <div class="header-wrapper rn-popup-mobile-menu m--0 row align-items-center">
-            <!-- Start Header Left -->
-            <div class="col-lg-2 col-6">
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html">
-                            <h3>Hr</h3>
-                            <!-- <img src="assets/images/logo/16.png" alt="logo"> -->
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Header Left -->
-            <!-- Start Header Center -->
-            <div class="col-lg-10 col-6">
-                <div class="header-center">
-                    <nav id="sideNav" class="mainmenu-nav navbar-example2 d-none d-xl-block">
-                        <!-- Start Mainmanu Nav -->
-                        <ul class="primary-menu nav nav-pills">
-                            <li class="nav-item"><a class="nav-link smoth-animation active" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#features">Features</a></li>
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#portfolio">Portfolio</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#resume">Resume</a></li>
-
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#contacts">Contact</a></li>
-                        </ul>
-                        <!-- End Mainmanu Nav -->
-                    </nav>
-                    <!-- Start Header Right  -->
-                    <div class="header-right">
-                        <div class="hamberger-menu d-block d-xl-none">
-                            <i id="menuBtn" class="feather-menu humberger-menu"></i>
-                        </div>
-                        <div class="close-menu d-block">
-                            <span class="closeTrigger">
-                                <i data-feather="x"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- End Header Right  -->
-
-                </div>
-            </div>
-            <!-- End Header Center -->
-        </div>
-    </header>
-    <!-- End Header Area -->
-
-
-    <!-- Start Popup Mobile Menu  -->
-    <div class="popup-mobile-menu">
-        <div class="inner">
-            <div class="menu-top">
-                <div class="menu-header">
-                    <a class="logo" href="index.html">
-                        <h4>Hr</h4>
-                        <!-- <img src="assets/images/logo/16.png" alt="Personal Portfolio"> -->
-                    </a>
-                    <div class="close-button">
-                        <button class="close-menu-activation close"><i data-feather="x"></i></button>
-                    </div>
-                </div>
-                <!-- <p class="discription">Inbio is a personal portfolio template. You can customize all.</p> -->
-            </div>
-            <div class="content">
-                <ul class="primary-menu nav nav-pills">
-                    <li class="nav-item"><a class="nav-link smoth-animation active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#resume">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="ai.html">Ai</a></li>
-                    <li><a href="ucapan3bulan.html">Ucapan</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#contacts">Contact</a></li>
-                </ul>
-                <!-- social sharea area -->
-                <div class="social-share-style-1 mt--40">
-                    <span class="title">find with me</span>
-                    <ul class="social-share d-flex liststyle">
-                        <li class="instagram"><a href="https://www.instagram.com/le1pary/"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-instagram">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- end -->
-            </div>
-        </div>
+<body>
+    <div class="card">
+        <h1>💙 Selamat 3 Bulan, Illl Sayang 💙</h1>
+        <p>
+            Ill, makasih eee… selalu ada par nyong, selalu dukung nyong, dan sabar sekali sama nyong.
+            Tiga bulan bukan waktu yang lama, tapi setiap detiknya berharga paskali.
+            Nyong bersyukur punya il dalam nyong punya hari-hari.
+        </p>
+        <p>
+            Makasih banyak su ada, su memahami, deng mencintai nyong apa adanya.
+            Mari katong dua tulis terus cerita indah sampe masa depan yang katong impikan sama-sama.
+            Nyong janji bakal trus berusaha jadi yang terbaik buat il, karena il pantas dapet yang terbaik dari nyong.
+            Maaf kalo nyong sempat bikin illl sedih... tapi nyong janji bakal terus belajar jadi lebih baik par il. 💫
+        </p>
+        <p><b>— Dari Harfely, untuk kekasih tercinta: Neonatal March 💙</b></p>
+        <button onclick="playSong()">💙 Putar Lagu 💙</button>
     </div>
-    <!-- End Popup Mobile Menu  -->
 
-    <main class="main-page-wrapper">
+    <audio id="song" src="D:\Artbyhar.github.io\glen.mp3" preload="auto"></audio>
 
-        <!-- Start Slider Area -->
-        <div id="home" class="rn-slider-area">
-            <div class="slide slider-style-1">
-                <div class="container">
-                    <div class="row row--30 align-items-center">
-                        <div class="order-2 order-lg-1 col-lg-7 mt_md--50 mt_sm--50 mt_lg--30">
-                            <div class="content">
-                                <div class="inner">
-                                    <span class="subtitle">Welcome to my world</span>
-                                    <h1 class="title">Hi, I’m <span>Neipani</span><br>
-                                        <span class="header-caption" id="page-top">
-                                            <!-- type headline start-->
-                                            <span class="cd-headline clip is-full-width">
-                                                <span>a </span>
-                                                <!-- ROTATING TEXT -->
-                                                <span class="cd-words-wrapper">
-                                                    <b class="is-visible">Web Developer</b>
-                                                    <b class="is-hidden">Data Science Student</b>
-                                                </span>
-                                            </span>
-                                            <!-- type headline end -->
-                                        </span>
-                                    </h1>
+    <script>
+        function playSong() {
+            const song = document.getElementById('song');
+            song.play();
+            for (let i = 0; i < 15; i++) createHeart();
+        }
 
-                                    <div>
-                                        <audio src="Musik 2.mp3" autoplay loop controls></audio>
-                                        <p class="description">I am Neipani, from the
-                                            <a href="https://nuaulu.net/ind"><span>NUAULU tribe</span></a> . I am a
-                                            Web Developer and now on going data science student. you can see my all
-                                            project's in <a href="https://github.com/Artbyhar/"><b>Github. </b></a>
-                                            I hope, we all can colaborated. <br>
-                                        </p>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
 
-                                        <div class="github">
-                                            <h5><a colour="#FFFFFF" href="https://github.com/harfelyleipary">My</a>
-                                                GitHub
-                                                Contributions
-                                            </h5>
-                                            <img height="60px" src="https://ghchart.rshah.org/harfelyleipary"
-                                                alt="GitHub Contributions Chart"> <br><br>
-                                            <!-- Statistik bahasa yang sering digunakan -->
-                                            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Artbyhar&layout=compact"
-                                                alt="Top Languages">
-                                            <p font="20px"> automatic updates from my <a
-                                                    href="https://github.com/harfelyleipary">account</a></p>
-                                        </div>
-                                        <h2>NewSmallApp</h2>
-                                        <a href="https://blank-app-4minh07yjoo.streamlit.app/">streamlit App</a>
-                                        <!-- <iframe src="https://blank-app-4minh07yjoo.streamlit.app/" width="100%"
-                                            height="800" frameborder="0"></iframe> -->
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12">
-                                        <div class="social-share-inner-left">
-                                            <span class="title">find with me</span>
-                                            <ul class="social-share d-flex liststyle">
-                                                <li class="book"><a
-                                                        href="https://scholar.google.com/citations?hl=id&user=5B_vEe0AAAAJ"><i
-                                                            data-feather="book"></i></a>
-                                                </li>
-                                                <li class="instagram"><a href="https://www.instagram.com/le1pary/"><i
-                                                            data-feather="instagram"></i></a>
-                                                </li>
-                                                <li class="home"><a href="https://nuaulu.net/ind" target="_blank"><i
-                                                            data-feather="home"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="order-1 order-lg-2 col-lg-5">
-                            <div class="thumbnail">
-                                <div class="inner">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Slider Area -->
-
-        <!-- Start Service Area -->
-        <div class="rn-service-area rn-section-gap section-separator" id="features">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-left" data-aos="fade-up" data-aos-duration="500"
-                            data-aos-delay="100" data-aos-once="true">
-                            <span class="subtitle">Features</span>
-                            <h2 class="title">What I Do</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row--25 mt_md--10 mt_sm--10">
-
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="100" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="layout"></i>
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">Web Development</a></h4>
-                                    <p class="description">I optimize user experience using HTML,
-                                        JavaScript and CSS to bring concepts to life. I use SQL for development and
-                                        building reliable databases.</p>
-                                    <!-- <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a> -->
-                                </div>
-                            </div>
-                            <a class="over-link" href="#"></a>
-                        </div>
-                    </div>
-                    <!-- End SIngle Service -->
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="grid"></i>
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">Data Science</a></h4>
-                                    <p class="description"> I’m currently studying Data Science with a focus
-                                        on applying machine learning and deep learning methods to real-world problems.
-                                        My research involves working with various datasets, including those related to
-                                        social development
-                                        and e-commerce, and developing predictive models to support data-driven
-                                        decision-making.
-                                        I’m particularly interested in using advanced models like TabNet,
-                                        LSTM, Transformers, and Graph Neural Networks.
-                                    </p>
-                                    <!-- <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a> -->
-                                </div>
-                            </div>
-                            <a class="over-link" href="#"></a>
-                        </div>
-                    </div>
-                    <!-- End SIngle Service -->
-
-                </div>
-            </div>
-        </div>
-        <!-- End Service Area  -->
-
-        <!-- Start Portfolio Area -->
-        <div class="rn-portfolio-area rn-section-gap section-separator" id="portfolio">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle">Visit my portfolio and keep your feedback</span>
-                            <h2 class="title">My Portfolio</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row row--25 mt--10 mt_md--10 mt_sm--10">
-                    <!-- Start Single Portfolio -->
-                    <!-- End Single Portfolio -->
-
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCe">
-                            <div class="inner">
-                                <div class="thumbnail" style="overflow: auto; height: 200px;">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/portfolio/1.png" style="height:156px;"
-                                            alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">Web Design</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                - </span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a href="javascript:void(0)">Design for HUHATE App<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Portfolio -->
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#chatbotModal">
-                            <div class="inner">
-                                <div class="thumbnail" style="overflow: auto; height: 200px;">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/portfolio/2.png" style="height:156px;"
-                                            alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">ChatBot</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                - </span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a href="javascript:void(0)">ChatBot DataScience FSM UKSW<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Portfolio -->
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#smilebps">
-                            <div class="inner">
-                                <div class="thumbnail" style="overflow: auto; height: 200px;">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/portfolio/3.png" style="height:156px;"
-                                            alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">SMILE App</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                - </span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a href="javascript:void(0)">SMILE App<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Portfolio -->
-                </div>
-            </div>
-        </div>
-        <!-- End portfolio Area -->
-
-        <!-- Start Resume Area -->
-        <div class="rn-resume-area rn-section-gap section-separator" id="resume">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle">3+ Years of Experience</span>
-                            <h2 class="title">My Resume</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt--45">
-                    <div class="col-lg-12">
-                        <ul class="rn-nav-list nav nav-tabs" id="myTabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="education-tab" data-toggle="tab" href="#education"
-                                    role="tab" aria-controls="education" aria-selected="true">Education</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="professional-tab" data-toggle="tab" href="#professional"
-                                    role="tab" aria-controls="professional" aria-selected="false">Professional
-                                    Skills</a>
-                            </li>
-
-                        </ul>
-                        <!-- Start Tab Content Wrapper  -->
-                        <div class="rn-nav-content tab-content" id="myTabContents">
-                            <!-- Start Single Tab  -->
-                            <div class="tab-pane show active fade single-tab-area" id="education" role="tabpanel"
-                                aria-labelledby="education-tab">
-                                <div class="personal-experience-inner mt--40">
-                                    <div class="row">
-                                        <!-- Start Skill List Area  -->
-                                        <div class="col-lg-6 col-md-12 col-12">
-                                            <div class="content">
-                                                <span class="subtitle">2020 - Present</span>
-                                                <h4 class="maintitle">Education Quality</h4>
-                                                <div class="experience-list">
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Bechalour of Computer Science BSCS</h4>
-                                                                    <span> XXXX
-                                                                        (2020 - 2023)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <span>3.92/4</span>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-
-                                        <!-- Start Skill List Area 2nd  -->
-                                        <div class="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
-                                            <div class="content">
-                                                <span class="subtitle">2020 - Present</span>
-                                                <h4 class="maintitle">Job Experience</h4>
-                                                <div class="experience-list">
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Web Development</h4>
-                                                                    <span>Freelancer (2020 - Present)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <span>---</span>
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">It includes the creation and
-                                                                development of responsive and functional websites. Using
-                                                                technologies such as HTML, CSS,
-                                                                JavaScript, I
-                                                                have developed various web projects that prioritize user
-                                                                experience
-                                                                (UX) and optimal application performance.</p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Data Science Student</h4>
-                                                                    <span> (2024 - Present)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <span>---</span>
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">In this program, I study large-scale
-                                                                data processing,
-                                                                machine learning, deep learning, statistical analysis,
-                                                                and the
-                                                                application of artificial intelligence for
-                                                                decision-making.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Tab  -->
-
-                            <!-- Start Single Tab  -->
-                            <div class="tab-pane fade " id="professional" role="tabpanel"
-                                aria-labelledby="professional-tab">
-                                <div class="personal-experience-inner mt--40">
-                                    <div class="row row--40">
-
-                                        <!-- Start Single Progressbar  -->
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="progress-wrapper">
-                                                <div class="content">
-                                                    <span class="subtitle">Features</span>
-                                                    <h4 class="maintitle">Design Skill</h4>
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">FIGMA</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.6s" data-wow-delay=".4s"
-                                                                role="progressbar" style="width: 85%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">85%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Adobe Illustrator</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.8s" data-wow-delay=".6s"
-                                                                role="progressbar" style="width: 45%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">45%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Progressbar  -->
-
-                                        <!-- Start Single Progressbar  -->
-                                        <div class="col-lg-6 col-md-6 col-12 mt_sm--60">
-                                            <div class="progress-wrapper">
-                                                <div class="content">
-                                                    <span class="subtitle">Features</span>
-                                                    <h4 class="maintitle">Development Skill</h4>
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">HTML&CSS</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 75%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">75%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">PHP</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.6s" data-wow-delay=".4s"
-                                                                role="progressbar" style="width: 80%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">60%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">JAVASCRIPT</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.7s" data-wow-delay=".5s"
-                                                                role="progressbar" style="width: 50%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">40%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Python</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.9s" data-wow-delay=".7s"
-                                                                role="progressbar" style="width: 70%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">70%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Progressbar  -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Tab  -->
-
-                            <!-- Start Contact section -->
-                            <div class="rn-contact-area rn-section-gap section-separator" id="contacts">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="section-title text-center">
-                                                <span class="subtitle">Contact</span>
-                                                <h2 class="title">Contact With Me</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
-                                        <div class="col-lg-5">
-                                            <div class="contact-about-area">
-                                                <div class="thumbnail">
-                                                    <img src="assets/images/logo/kerjasama.jpeg" alt="contact-img">
-                                                </div>
-                                                <div class="title-area">
-                                                    <h4 class="title">Neipani</h4>
-                                                    <span>Web Developer || Data Science Student</span>
-                                                </div>
-                                                <div class="social-area">
-                                                    <div class="name">FIND WITH ME</div>
-                                                    <div class="description">
-                                                        <p>I am available for freelance work. Connect with me via and
-                                                            call
-                                                            in to my account.
-                                                        </p>
-                                                    </div>
-                                                    <div class="social-icone">
-                                                        <a href="https://www.instagram.com/neipane_nesinopu/"><i
-                                                                data-feather="instagram"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Contuct section -->
-
-                            <!-- Modal Portfolio Body area Start -->
-                            <div class="modal fade" id="exampleModalCe" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true"><i data-feather="x"></i></span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-
-                                                <div class="col-lg-6">
-                                                    <div class="portfolio-popup-thumbnail">
-                                                        <div class="image">
-                                                            <img class="w-100" src="assets/images/portfolio/1.png"
-                                                                alt="slide">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6">
-                                                    <div class="text-content">
-                                                        <h3>
-                                                            <span>Figma - Design</span> UI UX Design .
-                                                        </h3>
-                                                        <p class="mb--30">Designed HUHATE App using figma </p>
-                                                        <div class="button-group mt--20">
-                                                            <a href="#" class="rn-btn thumbs-icon">
-                                                                <span>Like This</span>
-                                                                <i data-feather="thumbs-up"></i>
-                                                            </a>
-                                                            <a href="shorelinesurfteam.html" class="rn-btn">
-                                                                <span>View Project</span>
-                                                                <i data-feather="chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End of .text-content -->
-                                                </div>
-                                            </div>
-                                            <!-- End of .row Body-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal Portfolio area -->
-
-                            <!-- Modal Portfolio Body area Start -->
-                            <div class="modal fade" id="chatbotModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true"><i data-feather="x"></i></span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-
-                                                <div class="col-lg-6">
-                                                    <div class="portfolio-popup-thumbnail">
-                                                        <div class="image">
-                                                            <img class="w-100" src="assets/images/portfolio/2.png"
-                                                                alt="slide">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6">
-                                                    <div class="text-content">
-                                                        <h3>
-                                                            <span>html,css,python</span> UI UX Design .
-                                                        </h3>
-                                                        <p class="mb--30">For chatbot data science FSM UKSW</p>
-                                                        <div class="button-group mt--20">
-                                                            <a href="#" class="rn-btn thumbs-icon">
-                                                                <span>Like This</span>
-                                                                <i data-feather="thumbs-up"></i>
-                                                            </a>
-                                                            <a href="chatbot1.html" class="rn-btn">
-                                                                <span>View Project</span>
-                                                                <i data-feather="chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End of .text-content -->
-                                                </div>
-                                            </div>
-                                            <!-- End of .row Body-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal Portfolio area -->
-
-                            <!-- Modal Portfolio Body area Start -->
-                            <div class="modal fade" id="smilebps" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true"><i data-feather="x"></i></span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-
-                                                <div class="col-lg-6">
-                                                    <div class="portfolio-popup-thumbnail">
-                                                        <div class="image">
-                                                            <img class="w-100" src="assets/images/portfolio/3.png"
-                                                                alt="slide">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6">
-                                                    <div class="text-content">
-                                                        <h3>
-                                                            <span>html,css,javascript</span> Develop App internal for
-                                                            BPS Prov Maluku
-                                                        </h3>
-                                                        <p class="mb--30">Smile App for internal BPS Prov Maluku</p>
-                                                        <div class="button-group mt--20">
-                                                            <a href="#" class="rn-btn thumbs-icon">
-                                                                <span>Like This</span>
-                                                                <i data-feather="thumbs-up"></i>
-                                                            </a>
-                                                            <a href="https://smile.bpsmaluku.com/login.php"
-                                                                class="rn-btn">
-                                                                <span>View Project</span>
-                                                                <i data-feather="chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End of .text-content -->
-                                                </div>
-                                            </div>
-                                            <!-- End of .row Body-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal Portfolio area -->
-
-                            <!-- Modal Blog Body area Start -->
-                            <div class="modal fade" id="exampleModalCenters" tabindex="-1" role="dialog"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-news" role="document">
-                                    <div class="modal-content">
-
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true"><i data-feather="x"></i></span>
-                                            </button>
-                                        </div>
-
-                                        <!-- End of .modal-header -->
-                                    </div>
-                                    <!-- End of .modal-body -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Modal Blog area -->
-                        <!-- Back to  top Start -->
-                        <div class="backto-top">
-                            <div>
-                                <i data-feather="arrow-up"></i>
-                            </div>
-                        </div>
-                        <!-- Back to top end -->
-    </main>
-
-    <!-- Start Footer Area -->
-    <div class="rn-footer-area rn-section-gap section-separator">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-area text-center">
-
-                        <div class="logo">
-                            <a href="index.html">
-                                <img src="assets/images/logo/3.png" alt="logo">
-                            </a>
-                        </div>
-
-                        <p class="description mt--30">© By a bad boy - 2024. L2 <a target="_blank"></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Footer Area -->
-
-    <!-- JS ============================================ -->
-    <script src="assets/js/vendor/jquery.js"></script>
-    <script src="assets/js/vendor/modernizer.min.js"></script>
-    <script src="assets/js/vendor/feather.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.js"></script>
-    <script src="assets/js/vendor/text-type.js"></script>
-    <script src="assets/js/vendor/wow.js"></script>
-    <script src="assets/js/vendor/aos.js"></script>
-    <script src="assets/js/vendor/particles.js"></script>
-    <!-- main JS -->
-    <script src="assets/js/main.js"></script>
+        // Efek partikel biru lembut di background
+        function createParticles() {
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                particle.style.opacity = Math.random();
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
 </body>
 
 </html>
