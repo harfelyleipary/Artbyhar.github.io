@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💙 3 Bulan Bersamamu, Sayang 💙</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0, 90, 200, 0.5), rgba(0, 60, 160, 0.5)),
+                url('D:/Artbyhar.github.io/nyongil.jpg') no-repeat center center/cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Efek partikel biru lembut */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(173, 216, 255, 0.8);
+            border-radius: 50%;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 45px 40px;
+            max-width: 560px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: cardFadeIn 2s ease-out;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: glowText 3s infinite alternate;
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 5px #99ccff, 0 0 10px #99ccff, 0 0 20px #0099ff;
+            }
+
+            to {
+                text-shadow: 0 0 15px #66b3ff, 0 0 25px #66b3ff, 0 0 35px #0099ff;
+            }
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+            animation: fadeInText 2s ease-in;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            background: linear-gradient(90deg, #0099ff, #33ccff);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.4s;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+            animation: glowBtn 2s infinite alternate;
+        }
+
+        @keyframes glowBtn {
+            from {
+                box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+            }
+
+            to {
+                box-shadow: 0 0 30px rgba(0, 153, 255, 0.8);
+            }
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #00bfff, #66d9ff);
+        }
+
+        .heart {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            clip-path: path('M10 30 L0 15 A10 10 0 0 1 10 0 A10 10 0 0 1 20 15 Z');
+            animation: float 6s infinite ease-in;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>💙 Selamat 3 Bulan, Illl Sayang 💙</h1>
+        <p>
+            Ill, makasih eee… selalu ada par nyong, selalu dukung nyong, dan sabar sekali sama nyong.
+            Tiga bulan bukan waktu yang lama, tapi setiap detiknya berharga paskali.
+            Nyong bersyukur punya il dalam nyong punya hari-hari.
+        </p>
+        <p>
+            Makasih banyak su ada, su memahami, deng mencintai nyong apa adanya.
+            Mari katong dua tulis terus cerita indah sampe masa depan yang katong impikan sama-sama.
+            Nyong janji bakal trus berusaha jadi yang terbaik buat il, karena il pantas dapet yang terbaik dari nyong.
+            Maaf kalo nyong sempat bikin illl sedih... tapi nyong janji bakal terus belajar jadi lebih baik par il. 💫
+        </p>
+        <p><b>— Dari Harfely, untuk kekasih tercinta: Neonatal March 💙</b></p>
+        <button onclick="playSong()">💙 Putar Lagu 💙</button>
+    </div>
+
+    <audio id="song" src="D:/Artbyhar.github.io/glen.mp3" preload="auto"></audio>
+
+    <script>
+        function playSong() {
+            const song = document.getElementById('song');
+            song.play();
+            for (let i = 0; i < 15; i++) createHeart();
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        // Efek partikel biru lembut di background
+        function createParticles() {
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                particle.style.opacity = Math.random();
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+
+</html>
