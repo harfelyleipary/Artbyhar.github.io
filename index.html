@@ -2,9 +2,10 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💙 3 Bulan Bersamamu, Sayang 💙</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💙 BUAT NEONATAL MARCH 💙</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -14,10 +15,9 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background:
-                linear-gradient(rgba(0, 90, 200, 0.5), rgba(0, 60, 160, 0.5)),
-                url('D:/Artbyhar.github.io/nyongil.jpg') no-repeat center center/cover;
-            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 80, 180, 0.4), rgba(0, 80, 180, 0.6)),
+                url('nyongil.jpg') no-repeat center center / cover;
+            font-family: "Poppins", sans-serif;
             color: white;
             display: flex;
             justify-content: center;
@@ -25,12 +25,11 @@
             overflow: hidden;
         }
 
-        /* Efek partikel biru lembut */
         .particle {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(173, 216, 255, 0.8);
+            width: 5px;
+            height: 5px;
+            background: rgba(173, 216, 255, 0.7);
             border-radius: 50%;
             animation: floatUp 10s linear infinite;
         }
@@ -55,92 +54,72 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border-radius: 25px;
-            padding: 45px 40px;
-            max-width: 560px;
+            padding: 40px 30px;
+            max-width: 90%;
+            width: 500px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            animation: cardFadeIn 2s ease-out;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            animation: cardFadeIn 1.5s ease-out;
         }
 
         @keyframes cardFadeIn {
             from {
-                transform: translateY(40px);
                 opacity: 0;
+                transform: translateY(40px);
             }
 
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            animation: glowText 3s infinite alternate;
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px #80d4ff;
+            animation: glow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes glowText {
+        @keyframes glow {
             from {
-                text-shadow: 0 0 5px #99ccff, 0 0 10px #99ccff, 0 0 20px #0099ff;
+                text-shadow: 0 0 10px #66b3ff, 0 0 20px #0099ff;
             }
 
             to {
-                text-shadow: 0 0 15px #66b3ff, 0 0 25px #66b3ff, 0 0 35px #0099ff;
+                text-shadow: 0 0 25px #80d4ff, 0 0 35px #00aaff;
             }
         }
 
         p {
-            font-size: 1.1em;
+            font-size: 1em;
             line-height: 1.6em;
-            animation: fadeInText 2s ease-in;
-        }
-
-        @keyframes fadeInText {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin: 10px 0;
         }
 
         button {
             background: linear-gradient(90deg, #0099ff, #33ccff);
             border: none;
-            padding: 14px 30px;
-            border-radius: 50px;
+            padding: 12px 25px;
+            border-radius: 40px;
             color: white;
-            font-size: 1.1em;
+            font-size: 1em;
             cursor: pointer;
-            margin-top: 25px;
-            transition: 0.4s;
+            margin-top: 20px;
+            transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
-            animation: glowBtn 2s infinite alternate;
-        }
-
-        @keyframes glowBtn {
-            from {
-                box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
-            }
-
-            to {
-                box-shadow: 0 0 30px rgba(0, 153, 255, 0.8);
-            }
         }
 
         button:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 153, 255, 0.8);
             background: linear-gradient(90deg, #00bfff, #66d9ff);
         }
 
         .heart {
             position: absolute;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background: rgba(255, 255, 255, 0.8);
             clip-path: path('M10 30 L0 15 A10 10 0 0 1 10 0 A10 10 0 0 1 20 15 Z');
             animation: float 6s infinite ease-in;
@@ -155,6 +134,20 @@
             100% {
                 transform: translateY(-100vh) scale(1.5);
                 opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.7em;
+            }
+
+            p {
+                font-size: 0.95em;
+            }
+
+            .card {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -175,14 +168,17 @@
             Maaf kalo nyong sempat bikin illl sedih... tapi nyong janji bakal terus belajar jadi lebih baik par il. 💫
         </p>
         <p><b>— Dari Harfely, untuk kekasih tercinta: Neonatal March 💙</b></p>
+
         <button onclick="playSong()">💙 Putar Lagu 💙</button>
     </div>
 
-    <audio id="song" src="D:\Artbyhar.github.io\glen.mp3" preload="auto"></audio>
+    <!-- ubah ke path relatif di GitHub -->
+    <audio id="song" src="glen.mp3" preload="auto"></audio>
 
     <script>
         function playSong() {
             const song = document.getElementById('song');
+            song.volume = 0.7;
             song.play();
             for (let i = 0; i < 15; i++) createHeart();
         }
@@ -196,7 +192,6 @@
             setTimeout(() => heart.remove(), 6000);
         }
 
-        // Efek partikel biru lembut di background
         function createParticles() {
             for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
